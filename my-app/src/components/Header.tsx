@@ -1,6 +1,7 @@
 import { Mail, Linkedin, Instagram, Phone, ChevronDown, Headphones, Laptop, TrendingUp, Info, BookText, Users, Award, Book, MessageCircle } from 'lucide-react';
 import { Button } from './ui/button';
 import logo from "@/assets/logo.png";
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -55,10 +56,10 @@ export function Header({ onNavigateToServices, onNavigateHome, onNavigateToTechn
       <div className="bg-white border-b px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2 cursor-pointer" onClick={onNavigateHome}>
-            <div className="w-8 h-8 from-[#3b9ac9] to-[#2d7a9e]">
-                <img src={logo} alt="Logo" className="w-32 h-auto" />
+            <div className="w-8 h-8">
+              <img src={logo} alt="Kontivio Logo" />
             </div>
-            <span className="text-2xl font-extrabold font-sans text-gray-800">Kontivio</span>
+            <span className="text-2xl text-gray-800">Kontivio</span>
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
