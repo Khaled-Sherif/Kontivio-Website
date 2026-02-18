@@ -38,7 +38,8 @@ jobs:
       # 4. Install dependencies
       - name: Install dependencies
         run: npm ci
-
+        working-directory: my-app
       # 5. Run tests
       - name: Run tests
         run: npm test
+        working-directory: my-app
