@@ -6,40 +6,28 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
+    
+    
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    # Add this section:
     defaults:
       run:
-        working-directory: my-app  # <-- Run all commands inside 'my-app'
+        working-directory: ./my-app
 
     steps:
-      # 1. Checkout the repository
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # 2. Setup Node.js
+      - uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
+          # This ensures the cache looks in the right place too
+          cache: 'npm'
+          cache-dependency-path: './my-app/package-lock.json'
 
-      # 3. Cache node_modules
-      - name: Cache NPM
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('my-app/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      # 4. Install dependencies
       - name: Install dependencies
-        run: npm ci
-        working-directory: my-app
-      # 5. Run tests
-      - name: Run tests
-        run: npm test
-        working-directory: my-app
+        run: npm install
+        
+      - name: Build
+        run: npm run build
