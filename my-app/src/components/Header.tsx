@@ -70,7 +70,7 @@ export function Header({
 
       {/* Main navigation */}
       <div className="bg-white border-b px-6 py-4">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <div className="max-w-[85%] mx-auto flex justify-between items-center">
           {/* Logo */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={onNavigateHome}>
             <div className="w-8 h-8">
