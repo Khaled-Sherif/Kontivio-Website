@@ -1,5 +1,4 @@
 // Header.test.tsx
-import React from 'react';
 import { render, screen, fireEvent, within } from '@testing-library/react';
 import { Header } from './Header';
 import { LanguageProvider } from '../contexts/LanguageContext'; // make sure you wrap context
