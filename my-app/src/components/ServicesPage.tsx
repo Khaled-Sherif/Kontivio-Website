@@ -17,7 +17,7 @@ const servicesData = [
       'Quality assurance and monitoring',
       'Scalable solutions for businesses of all sizes'
     ],
-    image: 'https://images.unsplash.com/photo-1553775282-20af80779df7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b21lciUyMHN1cHBvcnQlMjBoZWFkc2V0fGVufDF8fHx8MTc2Mjg2MDg1NXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1553775282-20af80779df7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b21lciUyMHN1cHBvcnQlMjBoZWFkc2V0fGVufDF8fHx8MTc2Mjg2MDg1NXww&ixlib=rb-4.1.0&q=80&w=1080',
     color: 'from-blue-500 to-cyan-500'
   },
   {
@@ -33,7 +33,7 @@ const servicesData = [
       'Customizable chat widgets and branding',
       'AI-assisted responses for faster resolution'
     ],
-    image: 'https://images.unsplash.com/photo-1725798451557-fc60db3eb6a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b21lciUyMHNlcnZpY2UlMjBjaGF0JTIwb25saW5lfGVufDF8fHx8MTc2MzkzNjM0N3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1725798451557-fc60db3eb6a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjdXN0b21lciUyMHNlcnZpY2UlMjBjaGF0JTIwb25saW5lfGVufDF8fHx8MTc2MzkzNjM0N3ww&ixlib=rb-4.1.0&q=80&w=1080',
     color: 'from-purple-500 to-pink-500'
   },
   {
@@ -49,7 +49,7 @@ const servicesData = [
       'Technical documentation support',
       'Bug tracking and reporting'
     ],
-    image: 'https://images.unsplash.com/photo-1724260793422-7754e5d06fbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobmljYWwlMjBzdXBwb3J0JTIwY29tcHV0ZXJ8ZW58MXx8fHwxNzYyODk0NzY4fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1724260793422-7754e5d06fbe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobmljYWwlMjBzdXBwb3J0JTIwY29tcHV0ZXJ8ZW58MXx8fHwxNzYyODk0NzY4fDA&ixlib=rb-4.1.0&q=80&w=1080',
     color: 'from-green-500 to-emerald-500'
   },
   {
@@ -65,7 +65,7 @@ const servicesData = [
       'Performance tracking and optimization',
       'Cross-selling and upselling strategies'
     ],
-    image: 'https://images.unsplash.com/photo-1590649849991-e9af438ea77d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYWxlcyUyMHRlYW0lMjBtZWV0aW5nfGVufDF8fHx8MTc2Mjg5NDc2OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1590649849991-e9af438ea77d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzYWxlcyUyMHRlYW0lMjBtZWV0aW5nfGVufDF8fHx8MTc2Mjg5NDc2OXww&ixlib=rb-4.1.0&q=80&w=1080',
     color: 'from-orange-500 to-red-500'
   },
   {
@@ -81,7 +81,7 @@ const servicesData = [
       'Follow-up tracking and management',
       'Multi-language email support'
     ],
-    image: 'https://images.unsplash.com/photo-1685381949388-bb0402fbe133?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbWFpbCUyMHN1cHBvcnQlMjBzZXJ2aWNlfGVufDF8fHx8MTc2Mjg5NDc2OXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1685381949388-bb0402fbe133?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxlbWFpbCUyMHN1cHBvcnQlMjBzZXJ2aWNlfGVufDF8fHx8MTc2Mjg5NDc2OXww&ixlib=rb-4.1.0&q=80&w=1080',
     color: 'from-indigo-500 to-blue-500'
   },
   {
@@ -97,7 +97,7 @@ const servicesData = [
       'Content moderation and guidelines',
       'Influencer and review management'
     ],
-    image: 'https://images.unsplash.com/photo-1762330463580-9bfa9645b0f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMGN1c3RvbWVyJTIwc2VydmljZXxlbnwxfHx8fDE3NjI4OTQ3Njl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1762330463580-9bfa9645b0f8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMGN1c3RvbWVyJTIwc2VydmljZXxlbnwxfHx8fDE3NjI4OTQ3Njl8MA&ixlib=rb-4.1.0&q=80&w=1080',
     color: 'from-pink-500 to-rose-500'
   }
 ];
