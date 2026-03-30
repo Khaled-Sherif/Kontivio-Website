@@ -8,7 +8,6 @@ type Page = 'home'
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
-  const [selectedPosition, setSelectedPosition] = useState('');
 
   const navigateHome = () => {
     setCurrentPage('home');

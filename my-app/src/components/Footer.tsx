@@ -1,5 +1,4 @@
-import { Mail, Linkedin, Instagram, Phone } from 'lucide-react';
-import { Button } from './ui/button';
+import { Linkedin, Instagram, Phone } from 'lucide-react';
 import logo from "@/assets/White_Logo.png";
 
 interface FooterProps {
