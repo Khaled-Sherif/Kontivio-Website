@@ -1,6 +1,6 @@
 import { Button } from './ui/button';
 import { ArrowRight, CheckCircle, Headphones, Clock } from 'lucide-react';
-import bannerImage from "../assets/image-hero.webp";
+import bannerImage from "../assets/Image-hero.webp";
 
 interface HeroProps {
   onGetStarted?: () => void;

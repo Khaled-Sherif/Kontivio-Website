@@ -1,0 +1,36 @@
+name: CI Workflow
+
+# When the workflow should run
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    # This ensures all 'run' commands happen inside the my-app folder
+    defaults:
+      run:
+        working-directory: ./my-app
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          # Path must match the directory where your lock file lives
+          cache-dependency-path: './my-app/package-lock.json'
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: my-app
+        
+      - name: Build
+        run: npm run build
