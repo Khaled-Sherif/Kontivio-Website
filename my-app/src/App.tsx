@@ -4,6 +4,11 @@ import { HomePage } from './components/HomePage';
 import { ServicesPage } from './components/ServicesPage';
 import { TechnologySolutions } from './components/TechnologySolutions';
 import { BusinessDevelopment } from './components/BusinessDevelopment';
+import { AboutUs } from './components/AboutUs';
+import { OurStory } from './components/OurStory';
+import { TechnologyPartners } from './components/TechnologyPartners';
+import { Blog } from './components/Blog';
+import { BoardOfDirectors } from './components/BoardOfDirectors';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 type Page = 'home' | 'services' | 'technology' | 'businessDev' | 'aboutUs' | 'ourStory' | 'techPartners' | 'blog' | 'pricing' | 'boardOfDirectors' | 'howItWorks' | 'survey' | 'careers' | 'applyNow' | 'contactUs';
@@ -46,6 +51,14 @@ export default function App() {
         return <TechnologySolutions onNavigateHome={navigateHome} onNavigateToContactUs={navigateToContactUs} />;
       case 'businessDev':
         return <BusinessDevelopment onNavigateHome={navigateHome} />;
+      case 'aboutUs':
+        return <AboutUs onNavigateHome={navigateHome} onNavigateToContactUs={navigateToContactUs} />;
+      case 'ourStory':
+        return <OurStory onNavigateHome={navigateHome} />;
+      case 'techPartners':
+        return <TechnologyPartners onNavigateHome={navigateHome} />;
+      case 'blog':
+        return <Blog onNavigateHome={navigateHome} />;
       default:
         return <HomePage onNavigateToServices={navigateToServices} onNavigateToContactUs={navigateToContactUs} onNavigateHome={navigateHome} />;
     }
