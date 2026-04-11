@@ -10,7 +10,6 @@ type Page = 'home' | 'services' | 'technology' | 'businessDev' | 'aboutUs' | 'ou
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
-  const [selectedPosition, setSelectedPosition] = useState('');
 
   const navigateToServices = () => {
     setCurrentPage('services');
