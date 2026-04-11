@@ -9,6 +9,7 @@ import { OurStory } from './components/OurStory';
 import { TechnologyPartners } from './components/TechnologyPartners';
 import { Blog } from './components/Blog';
 import { BoardOfDirectors } from './components/BoardOfDirectors';
+import { ContactUs } from './components/ContactUs';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 type Page = 'home' | 'services' | 'technology' | 'businessDev' | 'aboutUs' | 'ourStory' | 'techPartners' | 'blog' | 'pricing' | 'boardOfDirectors' | 'howItWorks' | 'survey' | 'careers' | 'applyNow' | 'contactUs';
@@ -36,6 +37,31 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navigateToAboutUs = () => {
+    setCurrentPage('aboutUs');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToOurStory = () => {
+    setCurrentPage('ourStory');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToTechnologyPartners = () => {
+    setCurrentPage('techPartners');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToBoardOfDirectors = () => {
+    setCurrentPage('boardOfDirectors');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navigateToBlog = () => { 
+    setCurrentPage('blog');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const navigateToContactUs = () => {
     setCurrentPage('contactUs');
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -57,8 +83,12 @@ export default function App() {
         return <OurStory onNavigateHome={navigateHome} />;
       case 'techPartners':
         return <TechnologyPartners onNavigateHome={navigateHome} />;
+      case 'boardOfDirectors':
+        return <BoardOfDirectors onNavigateHome={navigateHome} />;
       case 'blog':
         return <Blog onNavigateHome={navigateHome} />;
+      case 'contactUs':
+        return <ContactUs />;
       default:
         return <HomePage onNavigateToServices={navigateToServices} onNavigateToContactUs={navigateToContactUs} onNavigateHome={navigateHome} />;
     }
@@ -68,10 +98,15 @@ export default function App() {
     <LanguageProvider>
       <div className="min-h-screen bg-white">
         <Header 
-          onNavigateToServices={navigateToServices}
           onNavigateHome={navigateHome}
+          onNavigateToServices={navigateToServices}
           onNavigateToTechnology={navigateToTechnology}
           onNavigateToBusinessDev={navigateToBusinessDev}
+          onNavigateToAboutUs={navigateToAboutUs} 
+          onNavigateToOurStory={navigateToOurStory}
+          onNavigateToTechPartners={navigateToTechnologyPartners}
+          onNavigateToBoardOfDirectors={navigateToBoardOfDirectors}
+          onNavigateToBlog={navigateToBlog}
           onNavigateToContactUs={navigateToContactUs}
         />
         {renderPage()}
