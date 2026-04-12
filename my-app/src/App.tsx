@@ -10,6 +10,7 @@ import { TechnologyPartners } from './components/TechnologyPartners';
 import { Blog } from './components/Blog';
 import { BoardOfDirectors } from './components/BoardOfDirectors';
 import { ContactUs } from './components/ContactUs';
+import { Pricing } from './components/Pricing';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 type Page = 'home' | 'services' | 'technology' | 'businessDev' | 'aboutUs' | 'ourStory' | 'techPartners' | 'blog' | 'pricing' | 'boardOfDirectors' | 'howItWorks' | 'survey' | 'careers' | 'applyNow' | 'contactUs';
@@ -67,6 +68,11 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navigateToPricing = () => {
+    setCurrentPage('pricing');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
@@ -89,6 +95,8 @@ export default function App() {
         return <Blog onNavigateHome={navigateHome} />;
       case 'contactUs':
         return <ContactUs />;
+      case 'pricing':
+        return <Pricing onNavigateHome={navigateHome} />;
       default:
         return <HomePage onNavigateToServices={navigateToServices} onNavigateToContactUs={navigateToContactUs} onNavigateHome={navigateHome} />;
     }
@@ -108,6 +116,7 @@ export default function App() {
           onNavigateToBoardOfDirectors={navigateToBoardOfDirectors}
           onNavigateToBlog={navigateToBlog}
           onNavigateToContactUs={navigateToContactUs}
+          onNavigateToPricing={navigateToPricing}
         />
         {renderPage()}
       </div>
