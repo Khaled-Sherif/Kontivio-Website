@@ -13,6 +13,7 @@ import { ContactUs } from './components/ContactUs';
 import { Pricing } from './components/Pricing';
 import { Careers } from './components/Careers';
 import { ApplyNow } from './components/ApplyNow';
+import { HowItWorks } from './components/HowItWorks';
 import { LanguageProvider } from './contexts/LanguageContext';
 
 type Page = 'home' | 'services' | 'technology' | 'businessDev' | 'aboutUs' | 'ourStory' | 'techPartners' | 'blog' | 'pricing' | 'boardOfDirectors' | 'howItWorks' | 'survey' | 'careers' | 'applyNow' | 'contactUs';
@@ -87,6 +88,11 @@ export default function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navigateToHowItWorks = () => {
+    setCurrentPage('howItWorks');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+  
   const renderPage = () => {
     switch (currentPage) {
       case 'home':
@@ -115,6 +121,8 @@ export default function App() {
         return <Careers onApplyNow={navigateToApplyNow} />;
       case 'applyNow':
         return <ApplyNow selectedPosition={selectedPosition} />;
+      case 'howItWorks':
+        return <HowItWorks />;
       default:
         return <HomePage onNavigateToServices={navigateToServices} onNavigateToContactUs={navigateToContactUs} onNavigateHome={navigateHome} />;
     }
@@ -136,6 +144,7 @@ export default function App() {
           onNavigateToContactUs={navigateToContactUs}
           onNavigateToPricing={navigateToPricing}
           onNavigateToCareers={navigateToCareers}
+          onNavigateToHowItWorks={navigateToHowItWorks}
         />
         {renderPage()}
       </div>
