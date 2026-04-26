@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Header } from './components/Header';
 import { LanguageProvider } from './contexts/LanguageContext'; // Import your provider
 import './globals.css'

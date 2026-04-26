@@ -48,8 +48,8 @@ export function Header({
   return (
     <header className="w-full">
       {/* Top bar */}
-      <div data-testid="top-bar" className="bg-[#3b9ac9] text-white px-6 py-2">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
+      <div data-testid="top-bar" className="bg-[#3b9ac9] text-white px-8 py-2">
+        <div className="max-w-8xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-2 text-sm">
             <Mail className="w-4 h-4" />
             <span>contactus@kontivio.com</span>
@@ -85,11 +85,11 @@ export function Header({
               <NavigationMenuList className="flex gap-8">
 
                 {/* Services */}
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-['Roboto'] text-base font-small text-gray-700 hover:text-[#3b9ac9] relative after:absolute after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#3b9ac9] after:transition-all hover:after:w-full cursor-pointer flex items-center gap-1">
+                <NavigationMenuItem >
+                  <NavigationMenuTrigger className="font-['Roboto'] text-lg font-medium text-gray-700 hover:text-[#3b9ac9] relative after:absolute after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#3b9ac9] after:transition-all hover:after:w-full cursor-pointer flex items-center gap-1">
                     {t('nav.services')}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="mt-4 w-64 p-0">
+                  <NavigationMenuContent className="mt-4 w-78 p-0">
                     <div className="flex flex-col gap-2 p-3">
                       <div onClick={onNavigateToServices} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 cursor-pointer">
                         <Headphones className="w-5 h-5 text-[#838387]" />
@@ -118,10 +118,10 @@ export function Header({
 
                 {/* About */}
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="font-['Roboto'] text-base font-medium text-gray-700 hover:text-[#3b9ac9] relative after:absolute after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#3b9ac9] after:transition-all hover:after:w-full cursor-pointer flex items-center gap-1">
+                  <NavigationMenuTrigger className="font-['Roboto'] text-lg font-medium text-gray-700 hover:text-[#3b9ac9] relative after:absolute after:-bottom-1 after:h-[2px] after:w-0 after:bg-[#3b9ac9] after:transition-all hover:after:w-full cursor-pointer flex items-center gap-1">
                     {t('nav.about')}
                   </NavigationMenuTrigger>
-                  <NavigationMenuContent className="w-64 p-0">
+                  <NavigationMenuContent className="w-78 p-0">
                     <div className="flex flex-col gap-2 p-3">
                       <div onClick={onNavigateToAboutUs} className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 cursor-pointer">
                         <Info className="w-5 h-5 text-[#838387]" />
@@ -170,9 +170,9 @@ export function Header({
                 </NavigationMenuItem>
 
                 {/* Simple Links */}
-                <a href="#pricing" onClick={onNavigateToPricing} className="text-base font-medium text-gray-700 hover:text-[#3b9ac9] transition-colors cursor-pointer">{t('nav.pricing')}</a>
-                <a href="#careers" onClick={onNavigateToCareers} className="text-base font-medium text-gray-700 hover:text-[#3b9ac9] transition-colors cursor-pointer">{t('nav.careers')}</a>
-                <a href="#how-it-works" onClick={onNavigateToHowItWorks} className="text-base font-medium text-gray-700 hover:text-[#3b9ac9] transition-colors cursor-pointer">{t('nav.howItWorks')}</a>
+                <a href="#pricing" onClick={onNavigateToPricing} className="text-lg font-medium text-gray-700 hover:text-[#3b9ac9] transition-colors cursor-pointer">{t('nav.pricing')}</a>
+                <a href="#careers" onClick={onNavigateToCareers} className="text-lg font-medium text-gray-700 hover:text-[#3b9ac9] transition-colors cursor-pointer">{t('nav.careers')}</a>
+                <a href="#how-it-works" onClick={onNavigateToHowItWorks} className="text-lg font-medium text-gray-700 hover:text-[#3b9ac9] transition-colors cursor-pointer">{t('nav.howItWorks')}</a>
 
               </NavigationMenuList>
               <div className="absolute top-full left-0 flex w-full justify-center mt-12">
@@ -185,7 +185,7 @@ export function Header({
           <div className="flex items-center gap-6">
             <Button 
               variant="outline" 
-              className="hidden p-1 md:inline-flex border-[#3b9ac9] text-[#3b9ac9] hover:bg-[#3b9ac9] hover:text-white" 
+              className="hidden py-1 px-4 md:inline-flex border-[#3b9ac9] text-[#3b9ac9] hover:bg-[#3b9ac9] hover:text-white" 
               onClick={onNavigateToContactUs}
             >
               {t('common.contactUs')}
