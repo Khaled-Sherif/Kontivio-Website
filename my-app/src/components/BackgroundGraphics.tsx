@@ -1,33 +1,40 @@
-export function CirclePattern() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <svg className="absolute top-0 right-0 w-64 h-64 opacity-5" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="100" cy="100" r="80" fill="none" stroke="currentColor" strokeWidth="1" />
-        <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" strokeWidth="1" />
-      </svg>
-    </div>
-  );
+import React from 'react';
+
+interface Props {
+  variant?: 'grid' | 'glow' | 'dots';
+  className?: string;
 }
 
-export function DotsPattern() {
+export const BackgroundGraphics: React.FC<Props> = ({ variant = 'grid', className = '' }) => {
+  if (variant === 'glow') {
+    return (
+      <div
+        aria-hidden="true"
+        className={className}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          pointerEvents: 'none',
+          background:
+            'radial-gradient(ellipse 58% 55% at 72% 46%, rgba(0,200,200,.18) 0%, transparent 68%), radial-gradient(ellipse 35% 38% at 16% 80%, rgba(0,200,200,.09) 0%, transparent 60%)',
+        }}
+      />
+    );
+  }
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-5">
-      <svg className="absolute bottom-10 right-10 w-32 h-32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        {Array.from({ length: 5 }).map((_, i) => 
-          Array.from({ length: 5 }).map((_, j) => (
-            <circle key={`${i}-${j}`} cx={i * 20 + 10} cy={j * 20 + 10} r="2" fill="currentColor" />
-          ))
-        )}
-      </svg>
-    </div>
+    <div
+      aria-hidden="true"
+      className={className}
+      style={{
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        backgroundImage:
+          'linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px)',
+        backgroundSize: '54px 54px',
+      }}
+    />
   );
-}
+};
 
-export function FloatingCircles() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute top-20 right-20 w-24 h-24 rounded-full bg-white/5"></div>
-      <div className="absolute bottom-40 left-20 w-16 h-16 rounded-full bg-white/5"></div>
-    </div>
-  );
-}
+export default BackgroundGraphics;

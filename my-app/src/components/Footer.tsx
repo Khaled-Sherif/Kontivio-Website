@@ -1,77 +1,65 @@
-import { Linkedin, Instagram, Phone } from 'lucide-react';
-import logo from "@/assets/White_Logo.png";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { KontivioLogo } from './KontivioLogo';
 
-interface FooterProps {
-  onNavigateToContactUs?: () => void;
-  onNavigateHome?: () => void;
-}
+const cols = {
+  Services: [
+    { label: 'Live Chat', href: '/services#chat' },
+    { label: 'Voice Support', href: '/services#voice' },
+    { label: 'Email Tickets', href: '/services#email' },
+    { label: 'Social Media', href: '/services#social' },
+    { label: 'AI Agents', href: '/services#ai' },
+  ],
+  Company: [
+    { label: 'About Us', href: '/about' },
+    { label: 'Careers', href: '/careers' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/contact' },
+  ],
+  'Get Started': [
+    { label: 'Get a Quote', href: '/contact' },
+    { label: 'Book a Call', href: '/contact' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'contactus@kontivio.com', href: 'mailto:contactus@kontivio.com' },
+  ],
+};
 
-export function Footer({ onNavigateToContactUs, onNavigateHome }: FooterProps) {
+export const Footer: React.FC = () => {
   return (
-    <footer className="bg-gray-900 text-gray-300 px-6 py-12">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
-          {/* Company Info */}
-          <div className="md:col-span-2">
-            <div className="flex items-centercursor-pointer" onClick={onNavigateHome}>
-                <div className="w-10 h-10">
-                <img src={logo} alt="Kontivio Logo" />
-                </div>
-                <span className="text-3xl font-medium text-white-800">Kontivio</span>
-            </div>
-            <p className="text-sm mb-4 mt-4">
-              Leading provider of remote customer support solutions. 
-              We help businesses deliver exceptional customer experiences through innovation and care.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="hover:text-[#3b9ac9] transition-colors">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="#" className="hover:text-[#3b9ac9] transition-colors">
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="hover:text-[#3b9ac9] transition-colors">
-                <Phone className="w-5 h-5" />
-              </a>
-            </div>
+    <footer className="k-footer">
+      <div className="k-ft">
+        <div>
+          <div className="k-f-logo-wrap">
+            <KontivioLogo size={28} textClass="k-f-logo-txt" />
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-white mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#home" onClick={onNavigateHome} className="hover:text-[#3b9ac9] transition-colors cursor-pointer">Home</a></li>
-              <li><a href="#services" className="hover:text-[#3b9ac9] transition-colors cursor-pointer">Services</a></li>
-              <li><a href="#about" className="hover:text-[#3b9ac9] transition-colors cursor-pointer">About</a></li>
-              <li><a href="#careers" className="hover:text-[#3b9ac9] transition-colors cursor-pointer">Careers</a></li>
-              <li><a href="#contact" onClick={onNavigateToContactUs} className="hover:text-[#3b9ac9] transition-colors cursor-pointer">Contact</a></li>
-            </ul>
+          <div className="k-f-desc">
+            Customer support outsourcing built for brands that care about every interaction.
           </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="text-white mb-4">Services</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#" className="hover:text-[#3b9ac9] transition-colors">Customer Support</a></li>
-              <li><a href="#" className="hover:text-[#3b9ac9] transition-colors">Live Chat</a></li>
-              <li><a href="#" className="hover:text-[#3b9ac9] transition-colors">Technical Support</a></li>
-              <li><a href="#" className="hover:text-[#3b9ac9] transition-colors">Sales Support</a></li>
-            </ul>
+          <div className="k-f-soc">
+            <a href="#">in</a>
+            <a href="#">ig</a>
+            <a href="#">tw</a>
           </div>
         </div>
-
-        {/* Bottom Bar */}
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <div>
-            © 2025 Kontivio. All rights reserved.
+        {Object.entries(cols).map(([heading, links]) => (
+          <div key={heading} className="k-f-col">
+            <h4>{heading}</h4>
+            <ul>
+              {links.map((l) => (
+                <li key={l.label}>
+                  <Link to={l.href}>{l.label}</Link>
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-[#3b9ac9] transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-[#3b9ac9] transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-[#3b9ac9] transition-colors">Cookie Policy</a>
-          </div>
-        </div>
+        ))}
+      </div>
+      <div className="k-f-bottom">
+        <span>© {new Date().getFullYear()} Kontivio. All rights reserved.</span>
+        <span>Privacy Policy · Terms of Service</span>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

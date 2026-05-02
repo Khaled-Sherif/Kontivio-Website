@@ -1,58 +1,90 @@
-import { Globe, Shield, Cpu, Maximize2 } from 'lucide-react';
-import { Card } from './ui/card';
+import React from 'react';
 
-const benefits = [
-  {
-    icon: Globe,
-    title: 'Expertise & Reliability',
-    description: 'Industry-leading professionals delivering consistent, high-quality service across all customer touchpoints.'
-  },
-  {
-    icon: Shield,
-    title: 'Technical Excellence',
-    description: 'Cutting-edge tools and deep technical knowledge to handle complex support scenarios with confidence.'
-  },
-  {
-    icon: Cpu,
-    title: 'Technology & Innovation',
-    description: 'Leveraging AI and automation to enhance efficiency while maintaining the human touch your customers expect.'
-  },
-  {
-    icon: Maximize2,
-    title: 'Scalability & Flexibility',
-    description: 'Seamlessly scale your support operations up or down based on your business needs and growth trajectory.'
-  }
+const metrics = [
+  { value: '<60s', label: 'Guaranteed Response', highlight: true },
+  { value: '18+', label: 'Languages, Native Speakers', highlight: false },
+  { value: '24/7', label: 'Round-the-Clock Coverage', highlight: false },
+  { value: 'Zero', label: 'Lock-in Contracts', highlight: true },
 ];
 
-export function WhyPartner() {
-  return (
-    <section className="relative py-20 bg-gradient-to-b from-gray-50 to-white px-6">
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <h2 className="text-4xl text-center mb-16 text-gray-800">
-          Why Partner with Kontivio?
-        </h2>
+const pillars = [
+  {
+    title: 'Brand-First Training',
+    desc: 'Every agent undergoes a full 3-week immersion before handling a single customer — your voice, your standards.',
+    icon: (
+      <>
+        <circle cx="12" cy="12" r="10" />
+        <circle cx="12" cy="12" r="6" />
+        <circle cx="12" cy="12" r="2" />
+      </>
+    ),
+  },
+  {
+    title: 'No Long-Term Contracts',
+    desc: 'Month-to-month only. We earn your business every month — or you walk, penalty-free.',
+    icon: (
+      <>
+        <path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2" />
+        <rect x="9" y="3" width="6" height="4" rx="1" />
+        <line x1="9" y1="12" x2="15" y2="12" />
+        <line x1="9" y1="16" x2="13" y2="16" />
+      </>
+    ),
+  },
+  {
+    title: 'Full Visibility Always',
+    desc: 'Live dashboards 24/7. Every ticket, agent, and metric visible to you in real time.',
+    icon: (
+      <>
+        <circle cx="11" cy="11" r="8" />
+        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+      </>
+    ),
+  },
+  {
+    title: 'Scale in Days',
+    desc: 'Handle surges or rapid growth without the cost and delay of in-house hiring.',
+    icon: <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />,
+  },
+];
 
-        <div className="grid md:grid-cols-2 gap-12">
-          {benefits.map((benefit, index) => {
-            const Icon = benefit.icon;
-            return (
-              <Card key={index} className="p-8 hover:shadow-lg transition-shadow border-none bg-white">
-                <div className="flex flex-col items-center text-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-[#3b9ac9]/10 flex items-center justify-center">
-                    <Icon className="w-8 h-8 text-[#3b9ac9]" />
-                  </div>
-                  <h3 className="text-xl text-gray-800">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {benefit.description}
-                  </p>
+export const WhyPartner: React.FC = () => {
+  return (
+    <section className="k-section k-why">
+      <div className="k-why-grid">
+        <div className="k-why-vis k-reveal">
+          <div className="k-m-grid">
+            {metrics.map((m) => (
+              <div key={m.label} className="k-m-box">
+                <div className={`k-m-n ${m.highlight ? 'tc' : ''}`}>{m.value}</div>
+                <div className="k-m-l">{m.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="k-reveal">
+          <div className="k-eyebrow">Why Kontivio</div>
+          <h2 className="k-sec-h">
+            We don't just answer tickets.<br />
+            We represent your brand.
+          </h2>
+          <div className="k-pillars" style={{ marginTop: '1.8rem' }}>
+            {pillars.map((p) => (
+              <div key={p.title} className="k-pill">
+                <div className="k-pill-ic">
+                  <svg viewBox="0 0 24 24">{p.icon}</svg>
                 </div>
-              </Card>
-            );
-          })}
+                <div>
+                  <div className="k-pill-t">{p.title}</div>
+                  <div className="k-pill-d">{p.desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default WhyPartner;

@@ -1,25 +1,16 @@
-import { render, screen } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { WhyPartner } from "./WhyPartner";
+import { render, screen } from '@testing-library/react';
+import { WhyPartner } from './WhyPartner';
 
-// ✅ Mock shadcn Card component
-vi.mock("./ui/card", () => ({
-  Card: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="card">{children}</div>
-  ),
-}));
-
-// ✅ Mock lucide icons
-vi.mock("lucide-react", () => ({
-  Globe: () => <svg data-testid="icon-globe" />,
-  Shield: () => <svg data-testid="icon-shield" />,
-  Cpu: () => <svg data-testid="icon-cpu" />,
-  Maximize2: () => <svg data-testid="icon-maximize" />,
-}));
-
-describe("WhyPartner component", () => {
-  it("renders heading", () => {
+describe('WhyPartner', () => {
+  it('renders the headline', () => {
     render(<WhyPartner />);
-    expect(screen.getByText(/Why Partner with Kontivio/i)).toBeInTheDocument();
+    expect(screen.getByText(/we represent your brand/i)).toBeInTheDocument();
+  });
+  it('renders all four pillars', () => {
+    render(<WhyPartner />);
+    expect(screen.getByText(/Brand-First Training/i)).toBeInTheDocument();
+    expect(screen.getByText(/No Long-Term Contracts/i)).toBeInTheDocument();
+    expect(screen.getByText(/Full Visibility Always/i)).toBeInTheDocument();
+    expect(screen.getByText(/Scale in Days/i)).toBeInTheDocument();
   });
 });
