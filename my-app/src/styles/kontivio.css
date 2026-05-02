@@ -4,6 +4,9 @@
    animations, gradients, and effects that don't translate
    cleanly to Tailwind utility classes.
    ═══════════════════════════════════════════════════════ */
+body {
+  background: red !important;
+}
 
 :root {
   --teal: #00c8c8;
