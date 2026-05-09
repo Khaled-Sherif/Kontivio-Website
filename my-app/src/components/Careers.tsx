@@ -34,7 +34,6 @@ export const Careers: React.FC = () => {
             </p>
           </div>
         </section>
-
         <section className="k-section" style={{ background: 'white' }} id="positions">
           <div style={{ maxWidth: 900, margin: '0 auto' }}>
             <div className="k-reveal" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
@@ -43,30 +42,12 @@ export const Careers: React.FC = () => {
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '.8rem' }} className="k-reveal">
               {positions.map((p) => (
-                <div
-                  key={p.title}
-                  style={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    gap: '1rem',
-                    padding: '1.5rem 1.7rem',
-                    border: '1px solid #c8e8ee',
-                    borderRadius: 12,
-                    background: 'white',
-                    transition: 'all .2s',
-                  }}
-                >
+                <div key={p.title} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', padding: '1.5rem 1.7rem', border: '1px solid #c8e8ee', borderRadius: 12, background: 'white' }}>
                   <div>
                     <div style={{ fontSize: '1rem', fontWeight: 700, color: '#0e2433' }}>{p.title}</div>
-                    <div style={{ marginTop: 4, fontSize: '.78rem', color: '#5c8892' }}>
-                      {p.dept} · {p.location} · {p.type}
-                    </div>
+                    <div style={{ marginTop: 4, fontSize: '.78rem', color: '#5c8892' }}>{p.dept} · {p.location} · {p.type}</div>
                   </div>
-                  <Link to={`/careers/apply?position=${encodeURIComponent(p.title)}`}>
-                    <button className="k-btn-contact">Apply →</button>
-                  </Link>
+                  <Link to={`/careers/apply?position=${encodeURIComponent(p.title)}`}><button className="k-btn-contact">Apply →</button></Link>
                 </div>
               ))}
             </div>

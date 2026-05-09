@@ -11,24 +11,7 @@ export const TechnologyPartners: React.FC = () => {
       </div>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }} className="k-reveal">
         {partners.map((p) => (
-          <div
-            key={p}
-            style={{
-              height: 80,
-              border: '1px solid #c8e8ee',
-              borderRadius: 12,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '.88rem',
-              fontWeight: 700,
-              color: '#0e2433',
-              background: '#f5fbfc',
-              transition: 'all .2s',
-            }}
-          >
-            {p}
-          </div>
+          <div key={p} style={{ height: 80, border: '1px solid #c8e8ee', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '.88rem', fontWeight: 700, color: '#0e2433', background: '#f5fbfc' }}>{p}</div>
         ))}
       </div>
     </section>

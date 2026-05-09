@@ -11,15 +11,9 @@ export const HowItWorks: React.FC = () => {
   return (
     <section className="k-section k-how" id="how">
       <div className="k-reveal" style={{ textAlign: 'center' }}>
-        <div className="k-eyebrow" style={{ display: 'flex', justifyContent: 'center' }}>
-          How It Works
-        </div>
-        <h2 className="k-sec-h" style={{ textAlign: 'center' }}>
-          Live in 3 weeks. Seriously.
-        </h2>
-        <p className="k-sec-sub" style={{ margin: '.4rem auto 0', textAlign: 'center' }}>
-          No lengthy onboarding. No IT headaches. We handle everything.
-        </p>
+        <div className="k-eyebrow" style={{ display: 'flex', justifyContent: 'center' }}>How It Works</div>
+        <h2 className="k-sec-h" style={{ textAlign: 'center' }}>Live in 3 weeks. Seriously.</h2>
+        <p className="k-sec-sub" style={{ margin: '.4rem auto 0', textAlign: 'center' }}>No lengthy onboarding. No IT headaches. We handle everything.</p>
       </div>
       <div className="k-steps k-reveal">
         {steps.map((s) => (

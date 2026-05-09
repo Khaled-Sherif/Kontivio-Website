@@ -38,38 +38,23 @@ export const BoardOfDirectors: React.FC = () => {
           <img src={teamPhotoHero} alt="Kontivio team at work" loading="lazy" />
           <div className="k-team-photo-hero-caption">
             <div className="k-tph-label">Our Operations</div>
-            <div className="k-tph-text">
-              Real people,<br />
-              delivering real results.
-            </div>
+            <div className="k-tph-text">Real people,<br />delivering real results.</div>
           </div>
         </div>
         <div className="k-team-text k-reveal">
           <div className="k-eyebrow">Who We Are</div>
-          <h2 className="k-sec-h">
-            A team built around<br />
-            your customers.
-          </h2>
-          <p>
-            Kontivio is a team of customer experience specialists, linguists, and support professionals united by one goal — making your customers feel genuinely cared for, in any language, at any hour.
-          </p>
-          <p>
-            We don't hire generalists. Every agent is selected for empathy, communication skill, and domain expertise — then trained specifically on your product before handling a single interaction.
-          </p>
+          <h2 className="k-sec-h">A team built around<br />your customers.</h2>
+          <p>Kontivio is a team of customer experience specialists, linguists, and support professionals united by one goal — making your customers feel genuinely cared for, in any language, at any hour.</p>
+          <p>We don't hire generalists. Every agent is selected for empathy, communication skill, and domain expertise — then trained specifically on your product before handling a single interaction.</p>
           <div className="k-team-values">
-            {values.map((v) => (
-              <div key={v} className="k-tv">{v}</div>
-            ))}
+            {values.map((v) => (<div key={v} className="k-tv">{v}</div>))}
           </div>
         </div>
       </div>
-
       <div className="k-team-grid k-reveal">
         {members.map((m) => (
           <div key={m.name} className="k-team-card">
-            <div className="k-team-card-img">
-              <img src={m.photo} alt={m.name} loading="lazy" />
-            </div>
+            <div className="k-team-card-img"><img src={m.photo} alt={m.name} loading="lazy" /></div>
             <div className="k-team-card-body">
               <div className="k-team-card-name">{m.name}</div>
               <div className="k-team-card-role">{m.role}</div>

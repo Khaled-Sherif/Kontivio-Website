@@ -10,13 +10,9 @@ export const ContactForm: React.FC = () => {
   };
 
   const inputStyle: React.CSSProperties = {
-    width: '100%',
-    padding: '.7rem .9rem',
-    fontSize: '.88rem',
-    border: '1px solid #c8e8ee',
-    borderRadius: 8,
-    fontFamily: 'Inter, sans-serif',
-    color: '#0e2433',
+    width: '100%', padding: '.7rem .9rem', fontSize: '.88rem',
+    border: '1px solid #c8e8ee', borderRadius: 8,
+    fontFamily: 'Inter, sans-serif', color: '#0e2433',
   };
 
   if (sent) {
@@ -47,15 +43,7 @@ export const ContactForm: React.FC = () => {
       </div>
       <div>
         <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="message">How can we help?</label>
-        <textarea
-          id="message"
-          rows={5}
-          required
-          placeholder="Tell us about your customer support needs..."
-          style={{ ...inputStyle, resize: 'vertical' }}
-          value={data.message}
-          onChange={(e) => setData({ ...data, message: e.target.value })}
-        />
+        <textarea id="message" rows={5} required placeholder="Tell us about your customer support needs..." style={{ ...inputStyle, resize: 'vertical' }} value={data.message} onChange={(e) => setData({ ...data, message: e.target.value })} />
       </div>
       <button type="submit" className="k-btn-hp" style={{ width: '100%', marginTop: '.4rem' }}>Send Message</button>
     </form>

@@ -36,13 +36,9 @@ export const ApplyNow: React.FC = () => {
   }
 
   const inputStyle: React.CSSProperties = {
-    width: '100%',
-    padding: '.7rem .9rem',
-    fontSize: '.88rem',
-    border: '1px solid #c8e8ee',
-    borderRadius: 8,
-    fontFamily: 'Inter, sans-serif',
-    color: '#0e2433',
+    width: '100%', padding: '.7rem .9rem', fontSize: '.88rem',
+    border: '1px solid #c8e8ee', borderRadius: 8,
+    fontFamily: 'Inter, sans-serif', color: '#0e2433',
   };
 
   return (
@@ -52,11 +48,8 @@ export const ApplyNow: React.FC = () => {
         <div style={{ maxWidth: 640, margin: '0 auto' }}>
           <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
             <div className="k-eyebrow" style={{ display: 'flex', justifyContent: 'center' }}>Apply Now</div>
-            <h1 className="k-sec-h" style={{ textAlign: 'center' }}>
-              {data.position ? `Apply for ${data.position}` : 'Submit your application'}
-            </h1>
+            <h1 className="k-sec-h" style={{ textAlign: 'center' }}>{data.position ? `Apply for ${data.position}` : 'Submit your application'}</h1>
           </div>
-
           <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
             {[
               { id: 'fullName', label: 'Full Name', type: 'text', required: true },
@@ -65,35 +58,15 @@ export const ApplyNow: React.FC = () => {
               { id: 'position', label: 'Position', type: 'text', required: true },
             ].map((f) => (
               <div key={f.id}>
-                <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor={f.id}>
-                  {f.label}
-                </label>
-                <input
-                  id={f.id}
-                  type={f.type}
-                  required={f.required}
-                  style={inputStyle}
-                  value={data[f.id as keyof typeof data] as string}
-                  onChange={(e) => setData({ ...data, [f.id]: e.target.value })}
-                />
+                <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor={f.id}>{f.label}</label>
+                <input id={f.id} type={f.type} required={f.required} style={inputStyle} value={data[f.id as keyof typeof data] as string} onChange={(e) => setData({ ...data, [f.id]: e.target.value })} />
               </div>
             ))}
             <div>
-              <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="coverLetter">
-                Cover Letter
-              </label>
-              <textarea
-                id="coverLetter"
-                rows={6}
-                placeholder="Tell us why you'd be a great fit..."
-                style={{ ...inputStyle, resize: 'vertical' }}
-                value={data.coverLetter}
-                onChange={(e) => setData({ ...data, coverLetter: e.target.value })}
-              />
+              <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="coverLetter">Cover Letter</label>
+              <textarea id="coverLetter" rows={6} placeholder="Tell us why you'd be a great fit..." style={{ ...inputStyle, resize: 'vertical' }} value={data.coverLetter} onChange={(e) => setData({ ...data, coverLetter: e.target.value })} />
             </div>
-            <button type="submit" className="k-btn-hp" style={{ marginTop: '.5rem' }}>
-              Submit Application
-            </button>
+            <button type="submit" className="k-btn-hp" style={{ marginTop: '.5rem' }}>Submit Application</button>
           </form>
         </div>
       </main>

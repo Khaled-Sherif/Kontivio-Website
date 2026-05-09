@@ -4,17 +4,17 @@ import { KontivioLogo } from './KontivioLogo';
 
 const cols = {
   Services: [
-    { label: 'Live Chat', href: '/services#chat' },
-    { label: 'Voice Support', href: '/services#voice' },
-    { label: 'Email Tickets', href: '/services#email' },
-    { label: 'Social Media', href: '/services#social' },
-    { label: 'AI Agents', href: '/services#ai' },
+    { label: 'Customer Support', href: '/services/customer-support' },
+    { label: 'Technology Solutions', href: '/services/technology' },
+    { label: 'Business Development', href: '/services/business-development' },
+    { label: 'Industries', href: '/industries' },
   ],
   Company: [
     { label: 'About Us', href: '/about' },
+    { label: 'Our Story', href: '/about/our-story' },
+    { label: 'Board of Directors', href: '/about/board' },
     { label: 'Careers', href: '/careers' },
     { label: 'Blog', href: '/blog' },
-    { label: 'Contact', href: '/contact' },
   ],
   'Get Started': [
     { label: 'Get a Quote', href: '/contact' },
@@ -32,24 +32,16 @@ export const Footer: React.FC = () => {
           <div className="k-f-logo-wrap">
             <KontivioLogo size={28} textClass="k-f-logo-txt" />
           </div>
-          <div className="k-f-desc">
-            Customer support outsourcing built for brands that care about every interaction.
-          </div>
+          <div className="k-f-desc">Customer support outsourcing built for brands that care about every interaction.</div>
           <div className="k-f-soc">
-            <a href="#">in</a>
-            <a href="#">ig</a>
-            <a href="#">tw</a>
+            <a href="#">in</a><a href="#">ig</a><a href="#">tw</a>
           </div>
         </div>
         {Object.entries(cols).map(([heading, links]) => (
           <div key={heading} className="k-f-col">
             <h4>{heading}</h4>
             <ul>
-              {links.map((l) => (
-                <li key={l.label}>
-                  <Link to={l.href}>{l.label}</Link>
-                </li>
-              ))}
+              {links.map((l) => (<li key={l.label}><Link to={l.href}>{l.label}</Link></li>))}
             </ul>
           </div>
         ))}

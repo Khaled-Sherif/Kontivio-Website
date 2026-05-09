@@ -34,14 +34,9 @@ export const Pricing: React.FC = () => {
       <div className="k-row k-reveal">
         <div>
           <div className="k-eyebrow">Pricing</div>
-          <h2 className="k-sec-h">
-            Simple, honest pricing.<br />
-            No hidden surprises.
-          </h2>
+          <h2 className="k-sec-h">Simple, honest pricing.<br />No hidden surprises.</h2>
         </div>
-        <p className="k-sec-sub">
-          No setup fees. No hidden costs. Just great support that grows with you.
-        </p>
+        <p className="k-sec-sub">No setup fees. No hidden costs. Just great support that grows with you.</p>
       </div>
       <div className="k-plan-grid k-reveal">
         {plans.map((p) => (
@@ -49,15 +44,12 @@ export const Pricing: React.FC = () => {
             {p.hot && <div className="k-plan-badge">Most Popular</div>}
             <div className="k-plan-name">{p.name}</div>
             <div className="k-plan-price" style={p.price === 'Custom' ? { fontSize: '2rem' } : {}}>
-              {p.price !== 'Custom' && <sup>$</sup>}
-              {p.price}
+              {p.price !== 'Custom' && <sup>$</sup>}{p.price}
             </div>
             <div className="k-plan-per">{p.per}</div>
             <div className="k-plan-div" />
             <ul className="k-plan-feats">
-              {p.feats.map((f) => (
-                <li key={f}><span className="k-ck">✓</span> {f}</li>
-              ))}
+              {p.feats.map((f) => (<li key={f}><span className="k-ck">✓</span> {f}</li>))}
             </ul>
             <Link to="/contact"><button className="k-plan-btn">{p.cta}</button></Link>
           </div>
@@ -65,10 +57,7 @@ export const Pricing: React.FC = () => {
       </div>
       <p style={{ textAlign: 'center', marginTop: '1.8rem', fontSize: '.8rem', color: '#5c8892' }}>
         💬 Not sure which plan fits?{' '}
-        <Link to="/contact" style={{ color: '#00a8a8', fontWeight: 600 }}>
-          Book a free 20-min consultation
-        </Link>{' '}
-        — no pressure, no pitch.
+        <Link to="/contact" style={{ color: '#00a8a8', fontWeight: 600 }}>Book a free 20-min consultation</Link> — no pressure, no pitch.
       </p>
     </section>
   );

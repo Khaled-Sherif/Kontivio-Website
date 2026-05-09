@@ -11,11 +11,7 @@ export const OurStory: React.FC = () => {
     <section className="k-section" style={{ background: 'white' }} id="our-story">
       <div className="k-why-grid">
         <div className="k-team-photo-hero k-reveal" style={{ height: 480 }}>
-          <img
-            src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80"
-            alt="Our story"
-            loading="lazy"
-          />
+          <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80" alt="Our story" loading="lazy" />
         </div>
         <div className="k-reveal">
           <div className="k-eyebrow">Our Story</div>

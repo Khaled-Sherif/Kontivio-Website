@@ -13,15 +13,12 @@ const items = [
 ];
 
 export const Marquee: React.FC = () => {
-  // Doubled to create seamless infinite loop
   const allItems = [...items, ...items];
   return (
     <div className="k-mq">
       <div className="k-mq-inner">
         {allItems.map((label, i) => (
-          <div key={i} className="k-mi">
-            {label}
-          </div>
+          <div key={i} className="k-mi">{label}</div>
         ))}
       </div>
     </div>

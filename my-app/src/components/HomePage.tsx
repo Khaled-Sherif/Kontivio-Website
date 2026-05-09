@@ -13,14 +13,9 @@ import { CTA } from './CTA';
 import { Footer } from './Footer';
 
 export const HomePage: React.FC = () => {
-  // Reveal-on-scroll observer (matches HTML behavior)
   useEffect(() => {
     const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add('on');
-        });
-      },
+      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('on')),
       { threshold: 0.12 }
     );
     document.querySelectorAll('.k-reveal').forEach((el) => obs.observe(el));

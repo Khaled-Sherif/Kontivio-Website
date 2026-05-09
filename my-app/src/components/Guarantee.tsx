@@ -13,10 +13,7 @@ export const Guarantee: React.FC = () => {
       <div className="k-g-grid">
         <div className="k-g-left k-reveal">
           <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>Our Promise</div>
-          <h2 className="k-sec-h">
-            Commitments you can<br />
-            hold us to.
-          </h2>
+          <h2 className="k-sec-h">Commitments you can<br />hold us to.</h2>
           <p className="k-sec-sub" style={{ marginTop: '1rem' }}>
             Every promise is backed by SLAs, written agreements, and full operational transparency from day one.
           </p>

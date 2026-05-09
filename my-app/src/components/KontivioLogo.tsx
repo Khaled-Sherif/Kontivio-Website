@@ -7,14 +7,6 @@ interface KontivioLogoProps {
   className?: string;
 }
 
-/**
- * Kontivio brand logo — exact geometric K traced pixel-by-pixel
- * from the original PNG file. Cyan top arm + navy bottom arm.
- *
- * Polygons (don't change without rendering & comparing):
- *   Cyan:  129,7 332,7 13,332 13,130
- *   Navy:  120,195 340,440 135,440 10,320
- */
 export const KontivioLogo: React.FC<KontivioLogoProps> = ({
   size = 36,
   showText = true,
