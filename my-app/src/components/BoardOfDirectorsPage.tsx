@@ -3,8 +3,11 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { BoardOfDirectors } from './BoardOfDirectors';
 import { CTA } from './CTA';
+import { useT } from '../i18n';
 
 export const BoardOfDirectorsPage: React.FC = () => {
+  const t = useT();
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('on')),
@@ -18,18 +21,12 @@ export const BoardOfDirectorsPage: React.FC = () => {
     <>
       <Header />
       <main>
-        <section
-          className="k-hero"
-          style={{
-            minHeight: '50vh',
-            background: 'linear-gradient(132deg, #0e2433 0%, #0f4456 60%, #0a7a8a 100%)',
-          }}
-        >
+        <section className="k-hero" style={{ minHeight: '50vh', background: 'linear-gradient(132deg, #0e2433 0%, #0f4456 60%, #0a7a8a 100%)' }}>
           <div className="k-hero-left k-reveal" style={{ gridColumn: '1 / -1', textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
-            <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>Leadership</div>
-            <h1>Meet our<br /><span className="k-hl">leadership team.</span></h1>
+            <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>{t('boardPage.eyebrow')}</div>
+            <h1>{t('boardPage.h1.line1')}<br /><span className="k-hl">{t('boardPage.h1.line2')}</span></h1>
             <p className="k-hero-sub" style={{ margin: '0 auto', maxWidth: '60ch' }}>
-              The people building Kontivio — each chosen for empathy, expertise, and an unshakeable commitment to customer care.
+              {t('boardPage.sub')}
             </p>
           </div>
         </section>

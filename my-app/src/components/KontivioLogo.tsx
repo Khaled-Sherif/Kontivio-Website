@@ -23,6 +23,7 @@ export const KontivioLogo: React.FC<KontivioLogoProps> = ({
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-label="Kontivio logo"
+        role="img"
       >
         <polygon points="129,7 332,7 13,332 13,130" fill="#01c7c8" />
         <polygon points="120,195 340,440 135,440 10,320" fill="#0e3d4f" />

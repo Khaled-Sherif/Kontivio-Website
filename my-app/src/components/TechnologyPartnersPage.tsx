@@ -3,8 +3,11 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { TechnologyPartners } from './TechnologyPartners';
 import { CTA } from './CTA';
+import { useT } from '../i18n';
 
 export const TechnologyPartnersPage: React.FC = () => {
+  const t = useT();
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('on')),
@@ -18,18 +21,12 @@ export const TechnologyPartnersPage: React.FC = () => {
     <>
       <Header />
       <main>
-        <section
-          className="k-hero"
-          style={{
-            minHeight: '50vh',
-            background: 'linear-gradient(132deg, #0e2433 0%, #0f4456 60%, #0a7a8a 100%)',
-          }}
-        >
+        <section className="k-hero" style={{ minHeight: '50vh', background: 'linear-gradient(132deg, #0e2433 0%, #0f4456 60%, #0a7a8a 100%)' }}>
           <div className="k-hero-left k-reveal" style={{ gridColumn: '1 / -1', textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
-            <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>Technology Partners</div>
-            <h1>We integrate with<br /><span className="k-hl">your stack.</span></h1>
+            <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>{t('tpp.eyebrow')}</div>
+            <h1>{t('tpp.h1.line1')}<br /><span className="k-hl">{t('tpp.h1.line2')}</span></h1>
             <p className="k-hero-sub" style={{ margin: '0 auto', maxWidth: '60ch' }}>
-              Native integrations with the tools you already use — your data stays where it should.
+              {t('tpp.sub')}
             </p>
           </div>
         </section>

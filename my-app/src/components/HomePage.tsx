@@ -6,7 +6,6 @@ import { Services } from './Services';
 import { HowItWorks } from './HowItWorks';
 import { WhyPartner } from './WhyPartner';
 import { Guarantee } from './Guarantee';
-import { Pricing } from './Pricing';
 import { FAQ } from './FAQ';
 import { BoardOfDirectors } from './BoardOfDirectors';
 import { CTA } from './CTA';
@@ -32,7 +31,6 @@ export const HomePage: React.FC = () => {
         <HowItWorks />
         <WhyPartner />
         <Guarantee />
-        <Pricing />
         <FAQ />
         <BoardOfDirectors />
         <CTA />

@@ -1,13 +1,15 @@
 import React from 'react';
+import { useT } from '../i18n';
 
 const partners = ['Salesforce', 'HubSpot', 'Zendesk', 'Intercom', 'Freshdesk', 'Shopify', 'Slack', 'Microsoft Teams'];
 
 export const TechnologyPartners: React.FC = () => {
+  const t = useT();
   return (
     <section className="k-section" style={{ background: 'white' }}>
       <div className="k-reveal" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-        <div className="k-eyebrow" style={{ display: 'flex', justifyContent: 'center' }}>Technology Partners</div>
-        <h2 className="k-sec-h" style={{ textAlign: 'center' }}>We integrate with your stack</h2>
+        <div className="k-eyebrow" style={{ display: 'flex', justifyContent: 'center' }}>{t('tpp.eyebrow')}</div>
+        <h2 className="k-sec-h" style={{ textAlign: 'center' }}>{t('tpp.h1.line1')} {t('tpp.h1.line2')}</h2>
       </div>
       <div style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem' }} className="k-reveal">
         {partners.map((p) => (

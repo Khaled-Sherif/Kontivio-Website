@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CTA } from './CTA';
+import { useT } from '../i18n';
 
 interface Solution {
   eyebrow: string;
@@ -72,6 +73,8 @@ const solutions: Solution[] = [
 ];
 
 export const BusinessDevelopmentPage: React.FC = () => {
+  const t = useT();
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('on')),
@@ -85,33 +88,19 @@ export const BusinessDevelopmentPage: React.FC = () => {
     <>
       <Header />
       <main>
-        <section
-          className="k-hero"
-          style={{
-            minHeight: '60vh',
-            background: 'linear-gradient(132deg, #0e2433 0%, #0f4456 60%, #0a7a8a 100%)',
-          }}
-        >
-          <div
-            className="k-hero-left k-reveal"
-            style={{ gridColumn: '1 / -1', textAlign: 'center', maxWidth: 760, margin: '0 auto' }}
-          >
-            <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>
-              Business Development
-            </div>
+        <section className="k-hero" style={{ minHeight: '60vh', background: 'linear-gradient(132deg, #0e2433 0%, #0f4456 60%, #0a7a8a 100%)' }}>
+          <div className="k-hero-left k-reveal" style={{ gridColumn: '1 / -1', textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
+            <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>{t('bdp.eyebrow')}</div>
             <h1>
-              Strategic CX consulting<br />
-              <span className="k-hl">that drives growth.</span>
+              {t('bdp.h1.line1')}<br />
+              <span className="k-hl">{t('bdp.h1.line2')}</span>
             </h1>
-            <p
-              className="k-hero-sub"
-              style={{ margin: '0 auto', maxWidth: '60ch' }}
-            >
-              Beyond day-to-day support, our consultants help you design end-to-end customer experience strategies — from journey mapping to KPI design and team scaling plans.
+            <p className="k-hero-sub" style={{ margin: '0 auto', maxWidth: '60ch' }}>
+              {t('bdp.sub')}
             </p>
             <div className="k-hero-btns" style={{ justifyContent: 'center', marginTop: '2rem' }}>
               <Link to="/contact">
-                <button className="k-btn-hp">Talk to a Consultant →</button>
+                <button className="k-btn-hp">{t('bdp.cta')} →</button>
               </Link>
             </div>
           </div>

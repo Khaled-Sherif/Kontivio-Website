@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { CTA } from './CTA';
+import { useT } from '../i18n';
 
 interface Solution {
   eyebrow: string;
@@ -25,8 +26,7 @@ const solutions: Solution[] = [
       'CRM-integrated for full customer context',
       'Real-time co-browse and screen-share capabilities',
     ],
-    image:
-      'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
   },
   {
     eyebrow: 'Voice Operations',
@@ -40,8 +40,7 @@ const solutions: Solution[] = [
       'Integration with leading telephony platforms',
       'Real-time supervisor dashboards and call coaching',
     ],
-    image:
-      'https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1560264280-88b68371db39?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
   },
   {
     eyebrow: 'Async Channels',
@@ -55,8 +54,7 @@ const solutions: Solution[] = [
       'Macros, templates, and tone-matched responses',
       'Weekly performance reports with deep insights',
     ],
-    image:
-      'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
   },
   {
     eyebrow: 'Public Engagement',
@@ -70,8 +68,7 @@ const solutions: Solution[] = [
       'Brand voice consistency on every public reply',
       'Monthly social health and reputation reports',
     ],
-    image:
-      'https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
   },
   {
     eyebrow: 'Smart Augmentation',
@@ -85,8 +82,7 @@ const solutions: Solution[] = [
       'Predictive escalation based on sentiment',
       'Continuous learning from your knowledge base',
     ],
-    image:
-      'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
   },
   {
     eyebrow: 'Insights & Quality',
@@ -100,12 +96,13 @@ const solutions: Solution[] = [
       'Custom KPI reporting for your unique needs',
       'Continuous coaching and agent development plans',
     ],
-    image:
-      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80',
   },
 ];
 
 export const CustomerSupportSolutions: React.FC = () => {
+  const t = useT();
+
   useEffect(() => {
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('on')),
@@ -119,44 +116,28 @@ export const CustomerSupportSolutions: React.FC = () => {
     <>
       <Header />
       <main>
-        {/* Hero */}
-        <section
-          className="k-hero"
-          style={{
-            minHeight: '60vh',
-            background: 'linear-gradient(132deg, #0e2433 0%, #0f4456 60%, #0a7a8a 100%)',
-          }}
-        >
-          <div
-            className="k-hero-left k-reveal"
-            style={{ gridColumn: '1 / -1', textAlign: 'center', maxWidth: 760, margin: '0 auto' }}
-          >
-            <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>
-              Customer Support Solutions
-            </div>
+        <section className="k-hero" style={{ minHeight: '60vh', background: 'linear-gradient(132deg, #0e2433 0%, #0f4456 60%, #0a7a8a 100%)' }}>
+          <div className="k-hero-left k-reveal" style={{ gridColumn: '1 / -1', textAlign: 'center', maxWidth: 760, margin: '0 auto' }}>
+            <div className="k-eyebrow" style={{ color: '#6ef5f5' }}>{t('csp.eyebrow')}</div>
             <h1>
-              Every channel.<br />
-              <span className="k-hl">Every customer.</span><br />
-              Every time.
+              {t('csp.h1.line1')}<br />
+              <span className="k-hl">{t('csp.h1.line2')}</span><br />
+              {t('csp.h1.line3')}
             </h1>
-            <p
-              className="k-hero-sub"
-              style={{ margin: '0 auto', maxWidth: '60ch' }}
-            >
-              From real-time chat to multilingual voice, from social listening to AI-augmented agents — Kontivio delivers the full spectrum of customer support, all under one roof.
+            <p className="k-hero-sub" style={{ margin: '0 auto', maxWidth: '60ch' }}>
+              {t('csp.sub')}
             </p>
             <div className="k-hero-btns" style={{ justifyContent: 'center', marginTop: '2rem' }}>
-              <Link to="/contact">
-                <button className="k-btn-hp">Get a Custom Quote →</button>
+              <Link to="/pricing/recommend">
+                <button className="k-btn-hp">{t('csp.cta.getStarted')} →</button>
               </Link>
               <Link to="/pricing">
-                <button className="k-btn-hs">View Pricing</button>
+                <button className="k-btn-hs">{t('csp.cta.viewPricing')}</button>
               </Link>
             </div>
           </div>
         </section>
 
-        {/* Detailed solution sections — one per channel */}
         {solutions.map((sol) => (
           <section key={sol.title} className="k-sol-section">
             <div className="k-sol-grid k-reveal">

@@ -1,4 +1,28 @@
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { I18nProvider } from './i18n';
+
+class ErrorBoundary extends React.Component<
+  { children: React.ReactNode },
+  { error: Error | null }
+> {
+  state = { error: null };
+  static getDerivedStateFromError(error: Error) { return { error }; }
+  render() {
+    if (this.state.error) {
+      return (
+        <div style={{ padding: '2rem', fontFamily: 'monospace', color: 'red', background: '#fff' }}>
+          <h2>Render Error</h2>
+          <pre style={{ whiteSpace: 'pre-wrap' }}>{(this.state.error as Error).message}</pre>
+          <pre style={{ whiteSpace: 'pre-wrap', fontSize: '0.8rem', color: '#555' }}>
+            {(this.state.error as Error).stack}
+          </pre>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 import { HomePage } from './components/HomePage';
 import { AboutUs } from './components/AboutUs';
 import { OurStoryPage } from './components/OurStoryPage';
@@ -9,6 +33,8 @@ import { TechnologySolutionsPage } from './components/TechnologySolutionsPage';
 import { TechnologyPartnersPage } from './components/TechnologyPartnersPage';
 import { BusinessDevelopmentPage } from './components/BusinessDevelopmentPage';
 import { Industries } from './components/Industries';
+import { PricingPage } from './components/PricingPage';
+import { PricingRecommender } from './components/PricingRecommender';
 import { Careers } from './components/Careers';
 import { ApplyNow } from './components/ApplyNow';
 import { Blog } from './components/Blog';
@@ -16,36 +42,30 @@ import { ContactUs } from './components/ContactUs';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        {/* Home */}
-        <Route path="/" element={<HomePage />} />
-        <Route path="/pricing" element={<HomePage />} />
-
-        {/* About */}
-        <Route path="/about" element={<AboutUs />} />
-        <Route path="/about/our-story" element={<OurStoryPage />} />
-        <Route path="/about/board" element={<BoardOfDirectorsPage />} />
-
-        {/* Services */}
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/services/customer-support" element={<CustomerSupportSolutions />} />
-        <Route path="/services/technology" element={<TechnologySolutionsPage />} />
-        <Route path="/services/technology-partners" element={<TechnologyPartnersPage />} />
-        <Route path="/services/business-development" element={<BusinessDevelopmentPage />} />
-
-        {/* Industries */}
-        <Route path="/industries" element={<Industries />} />
-
-        {/* Careers */}
-        <Route path="/careers" element={<Careers />} />
-        <Route path="/careers/apply" element={<ApplyNow />} />
-
-        {/* Resources */}
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/contact" element={<ContactUs />} />
-      </Routes>
-    </BrowserRouter>
+    <ErrorBoundary>
+    <I18nProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pricing" element={<PricingPage />} />
+          <Route path="/pricing/recommend" element={<PricingRecommender />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/about/our-story" element={<OurStoryPage />} />
+          <Route path="/about/board" element={<BoardOfDirectorsPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/customer-support" element={<CustomerSupportSolutions />} />
+          <Route path="/services/technology" element={<TechnologySolutionsPage />} />
+          <Route path="/services/technology-partners" element={<TechnologyPartnersPage />} />
+          <Route path="/services/business-development" element={<BusinessDevelopmentPage />} />
+          <Route path="/industries" element={<Industries />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/careers/apply" element={<ApplyNow />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<ContactUs />} />
+        </Routes>
+      </BrowserRouter>
+    </I18nProvider>
+    </ErrorBoundary>
   );
 }
 

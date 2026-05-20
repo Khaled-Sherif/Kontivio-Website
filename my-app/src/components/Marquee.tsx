@@ -1,18 +1,19 @@
 import React from 'react';
-
-const items = [
-  'Live Chat Support',
-  'Voice & Call Center',
-  'Email & Ticketing',
-  'Social Media',
-  'AI-Augmented Agents',
-  '18+ Languages',
-  '24/7 Coverage',
-  'Zero Lock-in',
-  'SLA Guaranteed',
-];
+import { useT } from '../i18n';
 
 export const Marquee: React.FC = () => {
+  const t = useT();
+  const items = [
+    t('marquee.liveChat'),
+    t('marquee.voice'),
+    t('marquee.email'),
+    t('marquee.social'),
+    t('marquee.ai'),
+    t('marquee.languages'),
+    t('marquee.coverage'),
+    t('marquee.zeroLockIn'),
+    t('marquee.sla'),
+  ];
   const allItems = [...items, ...items];
   return (
     <div className="k-mq">
