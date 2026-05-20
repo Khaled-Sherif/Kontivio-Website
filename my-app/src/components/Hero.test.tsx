@@ -1,43 +1,46 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import { describe, it, expect, vi } from "vitest";
-import { Hero } from "./Hero";
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { I18nProvider } from '../i18n';
+import { Hero } from './Hero';
 
-describe("Hero component", () => {
-  it("renders headline and subheadline", () => {
-    render(<Hero />);
+const renderWithProviders = (ui: React.ReactElement) =>
+  render(<I18nProvider><MemoryRouter>{ui}</MemoryRouter></I18nProvider>);
 
-    expect(
-      screen.getByText(/Exceptional Customer Support/i)
-    ).toBeInTheDocument();
+beforeAll(() => {
+  vi.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: false, json: async () => ({}) } as Response);
+});
+afterAll(() => vi.restoreAllMocks());
+beforeEach(() => localStorage.clear());
 
-    expect(
-      screen.getByText(/Scale your customer support/i)
-    ).toBeInTheDocument();
+describe('Hero', () => {
+  it('renders without crashing', () => {
+    renderWithProviders(<Hero />);
   });
 
-  it("renders CTA button", () => {
-    render(<Hero />);
-
-    const button = screen.getByRole("button", { name: /get started free/i });
-    expect(button).toBeInTheDocument();
+  it('shows English badge and headline by default', async () => {
+    renderWithProviders(<Hero />);
+    await screen.findByText(/Now Accepting New Clients/i);
+    expect(screen.getByText(/World-Class/i)).toBeInTheDocument();
   });
 
-  it("calls onGetStarted when button is clicked", () => {
-    const mockFn = vi.fn();
-
-    render(<Hero onGetStarted={mockFn} />);
-
-    const button = screen.getByRole("button", { name: /get started free/i });
-    fireEvent.click(button);
-
-    expect(mockFn).toHaveBeenCalledTimes(1);
+  it('shows stat labels in English', async () => {
+    renderWithProviders(<Hero />);
+    await screen.findByText('Response SLA');
+    expect(screen.getByText('Languages')).toBeInTheDocument();
+    expect(screen.getByText('Coverage')).toBeInTheDocument();
+    expect(screen.getByText('Lock-in')).toBeInTheDocument();
   });
 
-  it("renders feature pills", () => {
-    render(<Hero />);
+  it('renders Get Started and How It Works links', async () => {
+    renderWithProviders(<Hero />);
+    await screen.findByText(/Get Started/i);
+    expect(screen.getByRole('link', { name: /Get Started/i })).toHaveAttribute('href', '/pricing/recommend');
+  });
 
-    expect(screen.getByText(/98% Client Satisfaction/i)).toBeInTheDocument();
-    expect(screen.getByText(/24\/7 Support Available/i)).toBeInTheDocument();
-    expect(screen.getByText(/2 Min Response Time/i)).toBeInTheDocument();
+  it('shows German badge when language is set to de', async () => {
+    localStorage.setItem('kontivio_lang', 'de');
+    renderWithProviders(<Hero />);
+    await screen.findByText(/Wir nehmen jetzt neue Kunden auf/i);
+    expect(screen.getByText('Antwort-SLA')).toBeInTheDocument();
   });
 });

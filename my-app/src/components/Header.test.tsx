@@ -1,85 +1,59 @@
-// Header.test.tsx
-import { render, screen, fireEvent, within } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { I18nProvider } from '../i18n';
 import { Header } from './Header';
-import { LanguageProvider } from '../contexts/LanguageContext'; // make sure you wrap context
-import { vi } from 'vitest'
 
-describe('Header component', () => {
-  const mockHandlers = {
-    onNavigateToServices: vi.fn(),
-    onNavigateHome: vi.fn(),
-    onNavigateToTechnology: vi.fn(),
-    onNavigateToBusinessDev: vi.fn(),
-    onNavigateToAboutUs: vi.fn(),
-    onNavigateToOurStory: vi.fn(),
-    onNavigateToTechPartners: vi.fn(),
-    onNavigateToBlog: vi.fn(),
-    onNavigateToPricing: vi.fn(),
-    onNavigateToBoardOfDirectors: vi.fn(),
-    onNavigateToHowItWorks: vi.fn(),
-    onNavigateToCareers: vi.fn(),
-    onNavigateToContactUs: vi.fn(),
-  }
+const renderWithProviders = (ui: React.ReactElement) =>
+  render(<I18nProvider><MemoryRouter>{ui}</MemoryRouter></I18nProvider>);
 
-  beforeEach(() => {
-    vi.clearAllMocks();
+beforeAll(() => {
+  vi.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: false, json: async () => ({}) } as Response);
+});
+afterAll(() => vi.restoreAllMocks());
+beforeEach(() => localStorage.clear());
+
+describe('Header', () => {
+  it('renders without crashing', () => {
+    renderWithProviders(<Header />);
   });
 
-  function renderHeader() {
-    return render(
-      <LanguageProvider>
-        <Header {...mockHandlers} />
-      </LanguageProvider>
-    );
-  }
-
-  it('renders the logo and contact button', () => {
-    renderHeader();
-    expect(screen.getByAltText('Kontivio Logo')).toBeInTheDocument();
-    expect(screen.getByText(/^Kontivio$/)).toBeInTheDocument();
-    expect(screen.getByText(/contact us/i)).toBeInTheDocument();
+  it('shows all top-level nav links in English', async () => {
+    renderWithProviders(<Header />);
+    await screen.findByText('Services');
+    expect(screen.getByText('About')).toBeInTheDocument();
+    expect(screen.getByText('Pricing')).toBeInTheDocument();
+    expect(screen.getByText('Careers')).toBeInTheDocument();
   });
 
-  it('calls onNavigateHome when clicking logo', () => {
-    renderHeader();
-  fireEvent.click(screen.getByAltText("Kontivio Logo"))
-  expect(mockHandlers.onNavigateHome).toHaveBeenCalled()
+  it('shows Contact Us button', async () => {
+    renderWithProviders(<Header />);
+    await screen.findByRole('button', { name: /Contact Us/i });
   });
 
-  it('renders top bar with contact email and social icons', () => {
-    renderHeader()
-
-    // Top bar container
-    const topBar = screen.getByTestId("top-bar")
-
-
-    // Only look for links inside the top bar
-    const links = within(topBar).getAllByRole("link", { hidden: true })
-    expect(links).toHaveLength(3);
-  })
-
-  it('calls correct handler when clicking Services menu item', () => {
-    renderHeader();
-    const servicesTrigger = screen.getByText(/services/i);
-    fireEvent.click(servicesTrigger);
-
-    // Since the items are in a dropdown, you might need to query by text after clicking
-    const customerSupport = screen.getByText(/customer support/i);
-    fireEvent.click(customerSupport);
-    expect(mockHandlers.onNavigateToServices).toHaveBeenCalled();
+  it('renders language selector with all six options', async () => {
+    renderWithProviders(<Header />);
+    const select = await screen.findByRole('combobox', { name: /Language/i });
+    expect(select).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'EN' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'DE' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'FR' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'NL' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'ES' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'IT' })).toBeInTheDocument();
   });
 
-  it('changes language when selecting from dropdown', () => {
-    renderHeader();
-    const select = screen.getByRole('combobox') as HTMLSelectElement;
+  it('switches nav labels when language selector changes', async () => {
+    renderWithProviders(<Header />);
+    const select = await screen.findByRole('combobox', { name: /Language/i });
     fireEvent.change(select, { target: { value: 'de' } });
-    expect(select.value).toBe('de');
+    expect(await screen.findByText('Leistungen')).toBeInTheDocument();
+    expect(screen.getByText('Über uns')).toBeInTheDocument();
   });
 
-  it('calls contact button handler when clicked', () => {
-    renderHeader();
-    const contactButton = screen.getByText(/contact us/i);
-    fireEvent.click(contactButton);
-    expect(mockHandlers.onNavigateToContactUs).toHaveBeenCalled();
+  it('shows German nav links when language is pre-set to de', async () => {
+    localStorage.setItem('kontivio_lang', 'de');
+    renderWithProviders(<Header />);
+    await screen.findByText('Leistungen');
+    expect(screen.getByText('Karriere')).toBeInTheDocument();
   });
 });

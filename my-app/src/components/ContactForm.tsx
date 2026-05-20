@@ -1,148 +1,120 @@
-import { useState } from 'react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Card } from './ui/card';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
+import { useT } from '../i18n';
 
-export function ContactForm() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: ''
-  });
+interface ContactFormProps {
+  scheduleCall?: boolean;
+}
 
-  const handleSubmit = (e: React.FormEvent) => {
+export const ContactForm: React.FC<ContactFormProps> = ({ scheduleCall = false }) => {
+  const t = useT();
+  const [data, setData] = useState({ name: '', email: '', company: '', message: '', preferredTime: '', timezone: '' });
+  const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch('http://localhost:8000/api/v1/contacts/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          company: data.company,
+          message: data.message,
+          preferred_time: data.preferredTime,
+          timezone: data.timezone,
+          submission_type: scheduleCall ? 'schedule' : 'contact',
+        }),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        const firstError = Object.values(body)[0];
+        throw new Error(Array.isArray(firstError) ? firstError[0] : 'Submission failed. Please try again.');
+      }
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Submission failed. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+  const inputStyle: React.CSSProperties = {
+    width: '100%', padding: '.7rem .9rem', fontSize: '.88rem',
+    border: '1px solid #c8e8ee', borderRadius: 8,
+    fontFamily: 'Inter, sans-serif', color: '#0e2433',
   };
+
+  if (sent) {
+    return (
+      <div style={{ background: 'white', border: '1px solid #00c8c8', borderRadius: 16, padding: '2.5rem', textAlign: 'center' }}>
+        <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(0,200,200,.15)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1rem' }}>✓</div>
+        <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0e2433', marginBottom: '.4rem' }}>
+          {scheduleCall ? t('form.success.schedule') : t('form.success.message')}
+        </h3>
+        <p style={{ fontSize: '.85rem', color: '#5c8892' }}>
+          {scheduleCall ? t('form.success.schedule.sub') : t('form.success.message.sub')}
+        </p>
+      </div>
+    );
+  }
 
   return (
-    <section id="contact" className="relative py-20 bg-gray-50 px-6">
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl mb-4 text-gray-800">Get in Touch</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Ready to elevate your customer experience? Contact us today to discuss your needs
-          </p>
+    <form onSubmit={submit} style={{ background: 'white', border: '1px solid #c8e8ee', borderRadius: 16, padding: '2rem', boxShadow: '0 10px 30px rgba(14,36,51,.06)', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+        <div>
+          <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="name">{t('form.name')}</label>
+          <input id="name" type="text" required style={inputStyle} value={data.name} onChange={(e) => setData({ ...data, name: e.target.value })} />
         </div>
-
-        <div className="grid md:grid-cols-2 gap-12">
-          {/* Contact Form */}
-          <Card className="p-8 border-none shadow-lg">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm mb-2 text-gray-700">Name</label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your name"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-sm mb-2 text-gray-700">Email</label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your@email.com"
-                  required
-                />
-              </div>
-
-              <div>
-                <label htmlFor="company" className="block text-sm mb-2 text-gray-700">Company</label>
-                <Input
-                  id="company"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  placeholder="Your company name"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-sm mb-2 text-gray-700">Message</label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your needs..."
-                  rows={5}
-                  required
-                />
-              </div>
-
-              <Button type="submit" className="w-full bg-[#3b9ac9] hover:bg-[#2d7a9e]">
-                Send Message
-              </Button>
-            </form>
-          </Card>
-
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl mb-6 text-gray-800">Contact Information</h3>
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#3b9ac9]/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-5 h-5 text-[#3b9ac9]" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">Email</div>
-                    <div className="text-gray-800">contactus@kontivio.com</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#3b9ac9]/10 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-5 h-5 text-[#3b9ac9]" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">Phone</div>
-                    <div className="text-gray-800">+1 (555) 123-4567</div>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-[#3b9ac9]/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-5 h-5 text-[#3b9ac9]" />
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500 mb-1">Location</div>
-                    <div className="text-gray-800">Remote & Global Operations</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <Card className="p-6 bg-gradient-to-br from-[#3b9ac9] to-[#2d7a9e] text-white border-none">
-              <h4 className="text-xl mb-3">Why Choose Remote?</h4>
-              <p className="text-sm opacity-90">
-                Our remote-first approach allows us to tap into global talent, 
-                provide 24/7 coverage across time zones, and offer cost-effective 
-                solutions without compromising on quality.
-              </p>
-            </Card>
-          </div>
+        <div>
+          <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="email">{t('form.email')}</label>
+          <input id="email" type="email" required style={inputStyle} value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
         </div>
       </div>
-    </section>
+      <div>
+        <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="company">{t('form.company')}</label>
+        <input id="company" type="text" style={inputStyle} value={data.company} onChange={(e) => setData({ ...data, company: e.target.value })} />
+      </div>
+
+      {scheduleCall && (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+          <div>
+            <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="preferredTime">{t('form.preferredTime')}</label>
+            <select id="preferredTime" style={inputStyle} value={data.preferredTime} onChange={(e) => setData({ ...data, preferredTime: e.target.value })}>
+              <option value="">{t('form.preferredTime.select')}</option>
+              <option>{t('form.preferredTime.morning')}</option>
+              <option>{t('form.preferredTime.afternoon')}</option>
+              <option>{t('form.preferredTime.evening')}</option>
+              <option>{t('form.preferredTime.flexible')}</option>
+            </select>
+          </div>
+          <div>
+            <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="timezone">{t('form.timezone')}</label>
+            <input id="timezone" type="text" placeholder={t('form.timezone.placeholder')} style={inputStyle} value={data.timezone} onChange={(e) => setData({ ...data, timezone: e.target.value })} />
+          </div>
+        </div>
+      )}
+
+      <div>
+        <label style={{ display: 'block', marginBottom: '.4rem', fontSize: '.82rem', fontWeight: 600, color: '#0e2433' }} htmlFor="message">
+          {scheduleCall ? t('form.message.schedule') : t('form.message')}
+        </label>
+        <textarea id="message" rows={5} required placeholder={scheduleCall ? t('form.message.placeholder.schedule') : t('form.message.placeholder')} style={{ ...inputStyle, resize: 'vertical' }} value={data.message} onChange={(e) => setData({ ...data, message: e.target.value })} />
+      </div>
+      {error && (
+        <p style={{ fontSize: '.83rem', color: '#c0392b', background: '#fdf0ef', border: '1px solid #f5c6c2', borderRadius: 8, padding: '.6rem .9rem', margin: 0 }}>
+          {error}
+        </p>
+      )}
+      <button type="submit" className="k-btn-hp" style={{ width: '100%', marginTop: '.4rem', opacity: loading ? 0.7 : 1, cursor: loading ? 'not-allowed' : 'pointer' }} disabled={loading}>
+        {loading ? t('form.submitting') : (scheduleCall ? t('form.submit.schedule') : t('form.submit.message'))}
+      </button>
+    </form>
   );
-}
+};
+
+export default ContactForm;

@@ -1,26 +1,43 @@
+import React, { useEffect } from 'react';
+import { Header } from './Header';
 import { Hero } from './Hero';
-import { WhyPartner } from './WhyPartner';
+import { Marquee } from './Marquee';
 import { Services } from './Services';
-import { Stats } from './Stats';
-import { ContactForm } from './ContactForm';
+import { HowItWorks } from './HowItWorks';
+import { WhyPartner } from './WhyPartner';
+import { Guarantee } from './Guarantee';
+import { FAQ } from './FAQ';
+import { BoardOfDirectors } from './BoardOfDirectors';
+import { CTA } from './CTA';
 import { Footer } from './Footer';
 
-interface HomePageProps {
-  onNavigateToServices: () => void;
-  onGetStarted?: () => void;
-  onNavigateToContactUs?: () => void;
-  onNavigateHome?: () => void;
-}
+export const HomePage: React.FC = () => {
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add('on')),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.k-reveal').forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, []);
 
-export function HomePage({ onNavigateToServices, onGetStarted, onNavigateToContactUs, onNavigateHome }: HomePageProps) {
   return (
     <>
-      <Hero onGetStarted={onGetStarted} />
-      <WhyPartner />
-      <Services onNavigateToServices={onNavigateToServices} />
-      <Stats />
-      <ContactForm />
-      <Footer onNavigateToContactUs={onNavigateToContactUs} onNavigateHome={onNavigateHome} />
+      <Header />
+      <main>
+        <Hero />
+        <Marquee />
+        <Services />
+        <HowItWorks />
+        <WhyPartner />
+        <Guarantee />
+        <FAQ />
+        <BoardOfDirectors />
+        <CTA />
+      </main>
+      <Footer />
     </>
   );
-}
+};
+
+export default HomePage;
