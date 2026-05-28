@@ -17,7 +17,7 @@ export const ContactForm: React.FC<ContactFormProps> = ({ scheduleCall = false }
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch('http://localhost:8000/api/v1/contacts/', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/v1/contacts/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

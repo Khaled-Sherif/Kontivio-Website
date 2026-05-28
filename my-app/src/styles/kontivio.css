@@ -252,6 +252,7 @@ body {
   color: var(--teal2); margin-top: 1rem;
   display: flex; align-items: center; gap: .28rem;
   transition: gap .2s;
+  text-decoration: none;
 }
 .k-svc:hover .k-svc-lnk { gap: .5rem; }
 
@@ -618,6 +619,7 @@ body {
   list-style: none !important;
   padding: 0 !important;
   margin: 0 !important;
+  width: 100%
 }
 
 /* GRID layout forces icon column to ALWAYS be 32px */

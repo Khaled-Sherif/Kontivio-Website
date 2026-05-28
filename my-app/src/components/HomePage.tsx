@@ -7,7 +7,7 @@ import { HowItWorks } from './HowItWorks';
 import { WhyPartner } from './WhyPartner';
 import { Guarantee } from './Guarantee';
 import { FAQ } from './FAQ';
-import { BoardOfDirectors } from './BoardOfDirectors';
+import { IndustriesSection } from './IndustriesSection';
 import { CTA } from './CTA';
 import { Footer } from './Footer';
 
@@ -32,7 +32,7 @@ export const HomePage: React.FC = () => {
         <WhyPartner />
         <Guarantee />
         <FAQ />
-        <BoardOfDirectors />
+        <IndustriesSection />
         <CTA />
       </main>
       <Footer />

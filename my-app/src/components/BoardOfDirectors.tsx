@@ -1,21 +1,13 @@
 import React from 'react';
 import { useT } from '../i18n';
 
-const teamPhotoHero = 'https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=900&q=80';
-
-const memberPhotos = [
-  'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-  'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
-];
-
 export const BoardOfDirectors: React.FC = () => {
   const t = useT();
 
   const members = [
-    { name: 'Sarah K.', role: 'Senior Support Lead', bio: '7 years in enterprise CX. Specialises in SaaS and e-commerce accounts across EMEA.', photo: memberPhotos[0] },
-    { name: 'James M.', role: 'Head of Operations', bio: 'Oversees agent training, SLA performance, and client onboarding from day one.', photo: memberPhotos[1] },
-    { name: t('team.value2'), role: '18+ Languages · Global Coverage', bio: 'Native-speaking agents across Arabic, French, English, Spanish, German and more — ready to represent your brand.', photo: memberPhotos[2] },
+    { name: 'Sarah K.', role: 'Senior Support Lead', bio: '7 years in enterprise CX. Specialises in SaaS and e-commerce accounts across EMEA.' },
+    { name: 'James M.', role: 'Head of Operations', bio: 'Oversees agent training, SLA performance, and client onboarding from day one.' },
+    { name: t('team.value2'), role: '18+ Languages · Global Coverage', bio: 'Native-speaking agents across Arabic, French, English, Spanish, German and more — ready to represent your brand.' },
   ];
 
   const values = [
@@ -29,7 +21,7 @@ export const BoardOfDirectors: React.FC = () => {
     <section className="k-team">
       <div className="k-team-intro">
         <div className="k-team-photo-hero k-reveal">
-          <img src={teamPhotoHero} alt="Kontivio team at work" loading="lazy" />
+          <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, #c8e8ee 0%, #a0d0dc 100%)' }} />
           <div className="k-team-photo-hero-caption">
             <div className="k-tph-label">{t('team.photo.label')}</div>
             <div className="k-tph-text">{t('team.photo.text.line1')}<br />{t('team.photo.text.line2')}</div>
@@ -48,7 +40,14 @@ export const BoardOfDirectors: React.FC = () => {
       <div className="k-team-grid k-reveal">
         {members.map((m) => (
           <div key={m.name} className="k-team-card">
-            <div className="k-team-card-img"><img src={m.photo} alt={m.name} loading="lazy" /></div>
+            <div className="k-team-card-img">
+              <div style={{ width: '100%', height: '100%', background: 'linear-gradient(160deg, #d6eef5 0%, #b0d8e8 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="28" cy="20" r="12" fill="#7ab8ce" />
+                  <ellipse cx="28" cy="46" rx="20" ry="12" fill="#7ab8ce" />
+                </svg>
+              </div>
+            </div>
             <div className="k-team-card-body">
               <div className="k-team-card-name">{m.name}</div>
               <div className="k-team-card-role">{m.role}</div>
